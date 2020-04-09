@@ -4,14 +4,13 @@ import {Global, css} from '@emotion/core';
 
 import Weatherific from './Weatherific';
 
-// Gives us a nice CSS reset for a clean slate across different browsers.
 import 'normalize.css';
 
 const globalStyles = css`
   body {
+    color: #07096A;
     font-family: Barlow, sans-serif;
-    background-color: #eee;
-    padding: 20px;
+    background-color: #F0EEF7;
   }
 `;
 
