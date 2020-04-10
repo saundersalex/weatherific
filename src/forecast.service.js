@@ -8,7 +8,7 @@ const forecastService = () => {
   }
 
   const openWeatherMapsAPI = axios.create({
-    baseURL: 'http://api.openweathermap.org/data/2.5'
+    baseURL: 'https://api.openweathermap.org/data/2.5'
   });
 
   // Define service methods available through this service to consumers.
