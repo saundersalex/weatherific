@@ -17,8 +17,10 @@ const SearchInput = styled.input`
   }
 `;
 
-const SearchBar = ({onLocationChange}) => {
-  const [value, setValue] = useState('');
+const SearchBar = ({defaultLocation, onLocationChange}) => {
+  // Note: Normally copying props into state is an antipattern, but in this instance
+  // for a default value of an input, I'm going to let it slide!
+  const [value, setValue] = useState(defaultLocation || '');
 
   const onValueChange = (value) => {
     setValue(value);

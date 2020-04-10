@@ -52,14 +52,14 @@ const Subtitle = styled.h5`
   margin: 0;
 `;
 
-const Header = ({setLocation}) => {
+const Header = ({location, setLocation}) => {
   return <HeaderContainer>
     <HeaderLayout>
       <Branding>
         <Title>Weatherific</Title>
         <Subtitle>Find Your Forecast</Subtitle>
       </Branding>
-      <SearchBar onLocationChange={setLocation} />
+      <SearchBar defaultLocation={location} onLocationChange={setLocation} />
     </HeaderLayout>
   </HeaderContainer>
 };

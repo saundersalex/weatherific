@@ -24,7 +24,10 @@ const LoadingContainer = styled.div`
 
 const Weatherific = () => {
 
-  const [location, setLocation] = useState('');
+  const params = new URLSearchParams(window.location.search);
+  const locationFromURL = params.get('location');
+
+  const [location, setLocation] = useState(locationFromURL || '');
   const [debouncedLocation] = useDebounce(location, 1000);
   
   const [loading, setLoading] = useState(true);
