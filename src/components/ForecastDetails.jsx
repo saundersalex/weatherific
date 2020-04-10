@@ -21,6 +21,13 @@ const Location = styled.h1`
   font-weight: 700;
 `;
 
+const HourlyTitle = styled.h2`
+  // color: orange;
+  font-size: 18pt;
+  margin-top: 40px;
+  margin-bottom: 20px;
+`;
+
 const ForecastDaysContainer = styled.div`
   display: flex;
   margin-bottom: 20px;
@@ -58,8 +65,9 @@ const ForecastDetails = ({weatherData: {city, list}, units, setUnits}) => {
         })}
       </ForecastDaysContainer>
 
-      <ForecastHero units={units} setUnits={setUnits} weatherData={selectedDateForecasts[0]} />   
+      <ForecastHero units={units} city={city} weatherData={selectedDateForecasts[0]} />   
 
+      <HourlyTitle>Hourly Forecasts</HourlyTitle>
       {selectedDateForecasts.map((weatherData, ix) => {
         return <HourlyForecastRow
           key={`${weatherData.dt}-${ix}`}

@@ -69,8 +69,8 @@ const TemperatureSwitch = styled.div`
 const UnitButton = styled.button`
   background: ${({active}) => active ? '#050044' : '#FAFAFA'};
   color: ${({active}) => active ? 'white' : 'inherit'};
-  border: none;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, .2);
+  border: 1px solid rgba(0, 0, 0, .1);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, .1);
   padding: 8px 14px;
   font-size: 10pt;
 `;

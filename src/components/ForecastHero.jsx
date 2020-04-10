@@ -2,8 +2,6 @@ import React from 'react';
 import styled from '@emotion/styled';
 import moment from 'moment';
 
-import UnitSelector from './UnitSelector';
-
 const ForecastHeroContainer = styled.div`
   margin: 40px 0 20px 0;
 `;
@@ -82,7 +80,7 @@ const WeatherStat = styled.span`
   }
 `;
 
-const ForecastHero = ({weatherData, units, setUnits}) => {
+const ForecastHero = ({weatherData, units, city}) => {
 
   const weatherIcon = weatherData.weather[0].icon;
   const iconImageSource = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
@@ -98,6 +96,8 @@ const ForecastHero = ({weatherData, units, setUnits}) => {
       </TemperatureContainer>
       <Break />
       <WeatherStatistics>
+        {city.sunrise && <WeatherStat><strong>Sunrise:</strong> {moment(city.sunrise * 1000).format('h:mm A')}</WeatherStat>}
+        {city.sunset && <WeatherStat><strong>Sunset:</strong> {moment(city.sunset * 1000).format('h:mm A')}</WeatherStat>}
         {weatherData.clouds && <WeatherStat><strong>Cloudiness:</strong> {weatherData.clouds.all}%</WeatherStat>}
         {weatherData.wind && <WeatherStat><strong>Wind Speed:</strong> {weatherData.wind.speed} {windUnits}</WeatherStat>}
         {weatherData.rain && <WeatherStat><strong>3h Rain Vol:</strong> {weatherData.rain['3h']} mm</WeatherStat>}

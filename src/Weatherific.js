@@ -74,8 +74,6 @@ const Weatherific = () => {
       )}
       {debouncedLocation.length < 3 && <GetStarted />}
       {!loading && !error && weatherData && <ForecastDetails weatherData={weatherData} units={units} setUnits={setUnits} />}
-      
-      <pre>{JSON.stringify({ location, debouncedLocation, loading, error, units, weatherData }, ' ', 4)}</pre>
     </WeatherificContainer>
   );
 };
