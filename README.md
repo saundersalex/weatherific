@@ -22,7 +22,7 @@ This meant that the app was only capable of showing forecast data that is in the
 
 ### Shortcuts/Compromises made
 
-My biggest shortcut/regret in building this app was making the decision to re-query the OWM API when the user wanted to see temperatures in different units. Because the API itself will return precise temperatures by specifying what units you'd like the response in, I found it like an appealing option to go with initially. Upon getting the app to its current state, I wish I would have just made the conversions on the client, because my initial concerns about number precision ended up being irrelevant as I wound up rounding the dates anywhere they were displayed anyways.
+My biggest shortcut/regret in building this app was making the decision to re-query the OWM API when the user wanted to see temperatures in different units. Because the API itself will return precise temperatures by specifying what units you'd like the response in, I found it to be an appealing option to go with initially. Upon getting the app to its current state, I wish I would have just made the conversions on the client, because my initial concerns about number precision ended up being irrelevant as I wound up rounding the temperatures anywhere they were displayed anyways.
 
 Furthermore, I utilized particular 3rd party libraries to make my life a bit easier during development. Although, I tried to keep dependencies to a minimum and showcase my skills. I did utilize the following libraries to make some shortcuts for myself:
 
@@ -36,7 +36,7 @@ Furthermore, I utilized particular 3rd party libraries to make my life a bit eas
 
 **[moment](https://www.npmjs.com/package/moment):** For simpler date parsing.
 
-Finally, if I had a bit more time, I likely would've tried to write some more tests. In the interest of time, however, I felt it was more important to focus on the actual app itself and how it looked/functioned, as opposed to writing tests to verify implementations.
+Finally, if I had a bit more time, I likely would've tried to write some more tests. In the interest of time, however, I felt it was more important to focus on the actual app itself and how it looked/functioned as opposed to writing tests to verify implementations.
 
 ### Stretch goals attempted
 
