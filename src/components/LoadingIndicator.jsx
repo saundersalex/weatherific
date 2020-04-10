@@ -1,7 +1,8 @@
+import React from 'react';
 import styled from '@emotion/styled';
 
-const LoadingIndicator = styled.div`
-  border: 4px solid #eeeeee;
+const Loader = styled.div`
+  border: 4px solid rgba(0, 0, 0, .05);
   border-top: 4px solid ${props => props.color || '#07096A'};
   border-radius: 50%;
   width: ${props => `${props.size || 32}px`};
@@ -13,5 +14,9 @@ const LoadingIndicator = styled.div`
     100% { transform: rotate(360deg); }
   }
 `;
+
+const LoadingIndicator = ({containerStyles, ...rest}) => {
+  return <Loader containerStyles={containerStyles} {...rest} />;
+}
 
 export default LoadingIndicator;

@@ -42,20 +42,24 @@ const Title = styled.h1`
   font-size: 18pt;
   margin: 0;
   margin-bottom: 2px;
+
+  @media (min-width: 768px) {
+    font-size: 22pt;
+  }
 `;
 
 const Subtitle = styled.h5`
   margin: 0;
 `;
 
-const Header = () => {
+const Header = ({setLocation}) => {
   return <HeaderContainer>
     <HeaderLayout>
       <Branding>
         <Title>Weatherific</Title>
         <Subtitle>Find Your Forecast</Subtitle>
       </Branding>
-      <SearchBar />
+      <SearchBar onLocationChange={setLocation} />
     </HeaderLayout>
   </HeaderContainer>
 };
