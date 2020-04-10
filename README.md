@@ -87,12 +87,12 @@ Optionally you can run `npm test` to see output of the single unit test that was
 
 ### What did you not include in your solution that you want us to know about?
 
-Please see the **Stretch Goals** section, where I also outlined all of the things I wanted to implement but didn't get to in the final solution.
+Please see the **Stretch Goals** section where I outlined all of the things I wanted to implement but didn't get to in the final solution.
 
 
 ### Other information about your submission that you feel it's important that we know if applicable.
 
-I think I've documented as much as I could through the entire process from design decisions to my own thoughts in the submitted Tech Design/Notes document. If possible, please consider it as part of my exercise submission, even though it wasn't necessarily asked for as part of the solution.
+I think I've documented as much as I could through the entire exercise from design decisions to my own thought processes in the submitted Tech Design/Notes document. If possible, please consider it as part of my exercise submission, even though it wasn't necessarily asked for as part of the solution.
 
 
 ### Your feedback on this technical challenge

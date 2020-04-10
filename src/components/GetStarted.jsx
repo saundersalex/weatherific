@@ -31,7 +31,7 @@ const GetStarted = () => {
       </p>
 
       <h2>Featured Cities</h2>
-      <p>Why not take a peek at some of our favorite cities?</p>
+      <p>Why not take a peek at some of our favourite cities?</p>
       <ul>
         <li><CityLink href="?location=Vancouver">Vancouver</CityLink></li>
         <li><CityLink href="?location=Kelowna">Kelowna</CityLink></li>
