@@ -81,6 +81,7 @@ There were a few more stretch goals that I wanted to implement but didn't get to
 - Please make sure your machine has the latest version of [Node.js](https://nodejs.org) installed.
 - Obtain your own API key from [OpenWeatherMaps](https://openweathermaps.org)
 
+**To run the app:**
 1. Supply the API key as the value for the `REACT_APP_OWM_API_KEY` environment variable in the `.env.development` file in the project's root folder. By default this value is empty upon cloning the repository.
 3. Run the `npm install` command in the root directory.
 4. Once dependencies are finished installing, run `npm start` and the app should be available shortly after at http://localhost:3000
