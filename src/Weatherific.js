@@ -6,6 +6,7 @@ import Header from './components/Header';
 import LoadingIndicator from './components/LoadingIndicator';
 import ForecastDetails from './components/ForecastDetails';
 import GetStarted from './components/GetStarted';
+import Footer from './components/Footer';
 
 import forecastService from './forecast.service';
 
@@ -13,6 +14,8 @@ const WeatherificContainer = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  width: 100vw;
+  min-height: ${window.innerHeight}px;
 `;
 
 const LoadingContainer = styled.div`
@@ -22,12 +25,16 @@ const LoadingContainer = styled.div`
   padding: 50px;
 `;
 
+const Fill = styled.div`
+  flex: 1;
+`;
+
 const Weatherific = () => {
 
   const params = new URLSearchParams(window.location.search);
   const locationFromURL = params.get('location');
 
-  const [location, setLocation] = useState(locationFromURL || 'Kelowna');
+  const [location, setLocation] = useState(locationFromURL || '');
   const [debouncedLocation] = useDebounce(location, 1000);
   
   const [loading, setLoading] = useState(true);
@@ -74,6 +81,9 @@ const Weatherific = () => {
       )}
       {debouncedLocation.length < 3 && <GetStarted />}
       {!loading && !error && weatherData && <ForecastDetails weatherData={weatherData} units={units} setUnits={setUnits} />}
+      
+      <Fill />
+      <Footer />
     </WeatherificContainer>
   );
 };
