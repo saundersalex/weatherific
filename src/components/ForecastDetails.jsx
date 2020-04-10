@@ -22,7 +22,6 @@ const Location = styled.h1`
 `;
 
 const HourlyTitle = styled.h2`
-  // color: orange;
   font-size: 18pt;
   margin-top: 40px;
   margin-bottom: 20px;
@@ -42,8 +41,7 @@ const ForecastDaysContainer = styled.div`
   }
 `;
 
-const ForecastDetails = ({weatherData: {city, list}, units, setUnits}) => {
-
+const ForecastDetails = ({weatherData: {city, list}, units}) => {
   const weatherByDate = groupWeatherDataByDate(list);
   const uniqueWeatherDates = Object.keys(weatherByDate);
   const [selectedDate, setSelectedDate] = useState(0);
@@ -52,7 +50,7 @@ const ForecastDetails = ({weatherData: {city, list}, units, setUnits}) => {
   return (
     <DetailsContainer>
       <Location>{city.name}, {city.country}</Location>
-      
+
       <ForecastDaysContainer>
         {uniqueWeatherDates.length > 0 && uniqueWeatherDates.map((dateKey, ix) => {
           return <ForecastPreviewCard
@@ -68,12 +66,12 @@ const ForecastDetails = ({weatherData: {city, list}, units, setUnits}) => {
       <ForecastHero units={units} city={city} weatherData={selectedDateForecasts[0]} />   
 
       <HourlyTitle>Hourly Forecasts</HourlyTitle>
-      {selectedDateForecasts.map((weatherData, ix) => {
-        return <HourlyForecastRow
+      {selectedDateForecasts.map((weatherData, ix) => (
+        <HourlyForecastRow
           key={`${weatherData.dt}-${ix}`}
           weatherData={weatherData}
-        />})
-      }
+        />
+      ))}
     </DetailsContainer>
   );
 };

@@ -14,6 +14,7 @@ test('Should yield localized YYYY-MM-DD keyed dates from OWM API response', () =
   const localizedDates = sampleAPIResponse
     .map((weatherData) => moment(weatherData.dt * 1000).format('YYYY-MM-DD'))
     .filter((date, ix, allDates) => allDates.indexOf(date) === ix);
+
   const expectedResult = {
     [localizedDates[0]]: [
       {dt: 1586347200, weather: 'Windy'},
@@ -26,6 +27,7 @@ test('Should yield localized YYYY-MM-DD keyed dates from OWM API response', () =
       {dt: 1586520000, weather: 'Cloudy'}
     ]
   };
+
   const actualResult = groupWeatherDataByDate(sampleAPIResponse);
   expect(actualResult).toStrictEqual(expectedResult);
 });

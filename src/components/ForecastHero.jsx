@@ -13,7 +13,7 @@ const ForecastInfo = styled.div`
   padding: 20px 10px;
   border-radius: 8px;
   background-color: #050044;
-  color: white;
+  color: #FFFFFF;
 `;
 
 const WeatherDate = styled.h1`
@@ -21,7 +21,6 @@ const WeatherDate = styled.h1`
 `;
 
 const WeatherImage = styled.img`
-  // max-width: 50px;
   width: 100px;
 `;
 
@@ -45,7 +44,7 @@ const WeatherStatistics = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  color: white;
+  color: #FFFFFF;
   align-items: center;
 
   @media (min-width: 768px) {
@@ -66,7 +65,6 @@ const Break = styled.div`
 
 const WeatherStat = styled.span`
   padding: 10px 2px 10px 2px;
-  // margin-bottom: 5px;
   width: 100%;
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -82,29 +80,33 @@ const WeatherStat = styled.span`
 
 const ForecastHero = ({weatherData, units, city}) => {
 
-  const weatherIcon = weatherData.weather[0].icon;
-  const iconImageSource = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+  const {icon, description} = weatherData.weather[0];
+  const iconImageSource = `http://openweathermap.org/img/wn/${icon}@2x.png`;
   const windUnits = units === 'metric' ? 'm/s' : 'mph';
+  const weatherDate = moment(weatherData.dt * 1000).format('dddd, MMMM D [at] h:mm A');
+  const roundedTemperature = Math.round(weatherData.main.temp);
 
-  return <ForecastHeroContainer>
-    <WeatherDate>{moment(weatherData.dt * 1000).format('dddd, MMMM D, YYYY')}</WeatherDate>
-    <ForecastInfo>
-      <WeatherImage src={iconImageSource} alt={'Weather Icon'} />
-      <TemperatureContainer>
-        {Math.round(weatherData.main.temp)}&deg;
-        <WeatherConditions>{weatherData.weather[0].description}</WeatherConditions>
-      </TemperatureContainer>
-      <Break />
-      <WeatherStatistics>
-        {city.sunrise && <WeatherStat><strong>Sunrise:</strong> {moment(city.sunrise * 1000).format('h:mm A')}</WeatherStat>}
-        {city.sunset && <WeatherStat><strong>Sunset:</strong> {moment(city.sunset * 1000).format('h:mm A')}</WeatherStat>}
-        {weatherData.clouds && <WeatherStat><strong>Cloudiness:</strong> {weatherData.clouds.all}%</WeatherStat>}
-        {weatherData.wind && <WeatherStat><strong>Wind Speed:</strong> {weatherData.wind.speed} {windUnits}</WeatherStat>}
-        {weatherData.rain && <WeatherStat><strong>3h Rain Vol:</strong> {weatherData.rain['3h']} mm</WeatherStat>}
-        {weatherData.snow && <WeatherStat><strong>3h Snow Vol:</strong> {weatherData.snow['3h']} mm</WeatherStat>}
-      </WeatherStatistics>
-    </ForecastInfo>
-  </ForecastHeroContainer>;
+  return (
+    <ForecastHeroContainer>
+      <WeatherDate>{weatherDate}</WeatherDate>
+      <ForecastInfo>
+        <WeatherImage src={iconImageSource} alt={'Weather Icon'} />
+        <TemperatureContainer>
+          {roundedTemperature}&deg;
+          <WeatherConditions>{description}</WeatherConditions>
+        </TemperatureContainer>
+        <Break />
+        <WeatherStatistics>
+          {city.sunrise && <WeatherStat><strong>Sunrise:</strong> {moment(city.sunrise * 1000).format('h:mm A')}</WeatherStat>}
+          {city.sunset && <WeatherStat><strong>Sunset:</strong> {moment(city.sunset * 1000).format('h:mm A')}</WeatherStat>}
+          {weatherData.clouds && <WeatherStat><strong>Cloudiness:</strong> {weatherData.clouds.all}%</WeatherStat>}
+          {weatherData.wind && <WeatherStat><strong>Wind Speed:</strong> {weatherData.wind.speed} {windUnits}</WeatherStat>}
+          {weatherData.rain && <WeatherStat><strong>3h Rain Vol:</strong> {weatherData.rain['3h']} mm</WeatherStat>}
+          {weatherData.snow && <WeatherStat><strong>3h Snow Vol:</strong> {weatherData.snow['3h']} mm</WeatherStat>}
+        </WeatherStatistics>
+      </ForecastInfo>
+    </ForecastHeroContainer>
+  );
 };
 
 export default ForecastHero;

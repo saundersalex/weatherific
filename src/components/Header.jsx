@@ -50,13 +50,13 @@ const Title = styled.h1`
 
 const Subtitle = styled.h5`
   margin: 0;
-  color: orange;
+  color: #FFA500;
 `;
 
 const TemperatureSwitch = styled.div`
   display: flex;
   position: absolute;
-  top: 20px;
+  top: 17px;
   right: 15px;
 
   @media (min-width: 768px) {
@@ -68,7 +68,7 @@ const TemperatureSwitch = styled.div`
 
 const UnitButton = styled.button`
   background: ${({active}) => active ? '#050044' : '#FAFAFA'};
-  color: ${({active}) => active ? 'white' : 'inherit'};
+  color: ${({active}) => active ? '#FFFFFF' : 'inherit'};
   border: 1px solid rgba(0, 0, 0, .1);
   box-shadow: inset 0 0 10px rgba(0, 0, 0, .1);
   padding: 8px 14px;
@@ -76,29 +76,37 @@ const UnitButton = styled.button`
 `;
 
 const CelsiusButton = styled(UnitButton)`
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
 `;
   
 const FahrenheitButton = styled(UnitButton)`
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
 `;
 
 const Header = ({location, setLocation, units, setUnits}) => {
-  return <HeaderContainer>
-    <HeaderLayout>
-      <Branding>
-        <Title>Weatherific</Title>
-        <Subtitle>Find Your Forecast</Subtitle>
-      </Branding>
-      <SearchBar defaultLocation={location} onLocationChange={setLocation} />
-      <TemperatureSwitch>
-        <CelsiusButton active={units === 'metric'} onClick={() => setUnits('metric')}>&deg;C</CelsiusButton>
-        <FahrenheitButton active={units === 'imperial'} onClick={() => setUnits('imperial')}>&deg;F</FahrenheitButton>
-      </TemperatureSwitch>
-    </HeaderLayout>
-  </HeaderContainer>
+  return (
+    <HeaderContainer>
+      <HeaderLayout>
+        <Branding>
+          <Title>Weatherific</Title>
+          <Subtitle>Find Your Forecast</Subtitle>
+        </Branding>
+        <SearchBar defaultLocation={location} onLocationChange={setLocation} />
+        <TemperatureSwitch>
+          <CelsiusButton
+            active={units === 'metric'}
+            onClick={() => setUnits('metric')}
+          >&deg;C</CelsiusButton>
+          <FahrenheitButton
+            active={units === 'imperial'}
+            onClick={() => setUnits('imperial')}
+          >&deg;F</FahrenheitButton>
+        </TemperatureSwitch>
+      </HeaderLayout>
+    </HeaderContainer>
+  );
 };
 
 export default Header;

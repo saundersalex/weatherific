@@ -1,10 +1,9 @@
 import axios from 'axios';
 
 const forecastService = () => {
-
   const openWeatherMapsAPIKey = process.env.REACT_APP_OWM_API_KEY;
   if (!openWeatherMapsAPIKey) {
-    console.error('No OpenWeatherMaps API key provided. Requests for Forecast data will not work until you provide the API key.');
+    alert('No OpenWeatherMaps API key provided. Requests for Forecast data will not work until you provide the API key.');
   }
 
   const openWeatherMapsAPI = axios.create({

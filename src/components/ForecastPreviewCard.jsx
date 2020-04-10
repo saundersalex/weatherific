@@ -7,7 +7,7 @@ const CardContainer = styled.div`
   border: 1px solid transparent;
   color: ${({isSelected}) => isSelected ? '#fff' : 'inherit'};
   padding: 15px 0;
-  font-size: 10pt;
+  font-size: 11pt;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -24,10 +24,12 @@ const CardContainer = styled.div`
 `;
 
 const HighTemp = styled.strong`
+  font-size: 10pt;
   margin-right: 10px;
-`;
-
+  `;
+  
 const LowTemp = styled.span`
+  font-size: 10pt;
   opacity: .75;
 `;
 
@@ -44,14 +46,16 @@ const ForecastPreviewCard = ({weatherData, isSelected, onPress, isLastCard}) => 
   const weatherIcon = mostRecentWeatherForecast.weather[0].icon;
   const iconImageSource = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
   
-  return <CardContainer isLastCard={isLastCard} isSelected={isSelected} onClick={onPress}>
-    <strong>{friendlyDay}</strong>
-    <WeatherImage src={iconImageSource} alt={'Weather Icon'} />
-    <div>
-      <HighTemp>{highTemp}&deg;</HighTemp>
-      <LowTemp>{lowTemp}&deg;</LowTemp>
-    </div>
-  </CardContainer>;
+  return (
+    <CardContainer isLastCard={isLastCard} isSelected={isSelected} onClick={onPress}>
+      <strong>{friendlyDay}</strong>
+      <WeatherImage src={iconImageSource} alt={'Weather Icon'} />
+      <div>
+        <HighTemp>{highTemp}&deg;</HighTemp>
+        <LowTemp>{lowTemp}&deg;</LowTemp>
+      </div>
+    </CardContainer>
+  );
 };
 
 export default ForecastPreviewCard;

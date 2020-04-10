@@ -27,7 +27,15 @@ const SearchBar = ({defaultLocation, onLocationChange}) => {
     onLocationChange(value);
   };
 
-  return <SearchInput placeholder="What's your favourite city?" type="text" name="city" value={value} onChange={(e) => onValueChange(e.target.value)} />;
+  return (
+    <SearchInput
+      placeholder="What's your favourite city?"
+      type="text"
+      name="city"
+      value={value}
+      onChange={(e) => onValueChange(e.target.value)}
+    />
+  );
 };
 
 export default SearchBar;

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import moment from 'moment';
 
 const HourlyForecastContainer = styled.div`
-  background-color: orange;
+  background-color: #FFA500;
   border-radius: 4px;
   padding: 10px;
   display: flex;
@@ -29,20 +29,21 @@ const Fill = styled.div`
   flex: 1;
 `;
 
-const HourlyForecastRow = ({weatherData, setUnits}) => {
-
+const HourlyForecastRow = ({weatherData}) => {
   const friendlyTime = moment(weatherData.dt * 1000).format('h:mm A');
+  const {icon, description} = weatherData.weather[0];
+  const iconImageSource = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+  const roundedTemperature = Math.round(weatherData.main.temp);
 
-  const weatherIcon = weatherData.weather[0].icon;
-  const iconImageSource = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
-
-  return <HourlyForecastContainer>
-    <strong>{friendlyTime}</strong>
-    <WeatherImage src={iconImageSource} />
-    <strong>{Math.round(weatherData.main.temp)}&deg;</strong>
-    <Fill />
-    <WeatherDescription>{weatherData.weather[0].description}</WeatherDescription>
-  </HourlyForecastContainer>;
+  return (
+    <HourlyForecastContainer>
+      <strong>{friendlyTime}</strong>
+      <WeatherImage src={iconImageSource} />
+      <strong>{roundedTemperature}&deg;</strong>
+      <Fill />
+      <WeatherDescription>{description}</WeatherDescription>
+    </HourlyForecastContainer>
+  );
 };
 
 export default HourlyForecastRow;

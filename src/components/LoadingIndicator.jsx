@@ -15,8 +15,8 @@ const Loader = styled.div`
   }
 `;
 
-const LoadingIndicator = ({containerStyles, ...rest}) => {
-  return <Loader containerStyles={containerStyles} {...rest} />;
+const LoadingIndicator = (props) => {
+  return <Loader {...props} />;
 }
 
 export default LoadingIndicator;
