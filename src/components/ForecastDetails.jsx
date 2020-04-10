@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import styled from '@emotion/styled';
-import moment from 'moment';
 
 import ForecastPreviewCard from './ForecastPreviewCard';
 import ForecastHero from './ForecastHero';
@@ -9,41 +8,66 @@ import HourlyForecastRow from './HourlyForecastRow';
 import {groupWeatherDataByDate} from '../util';
 
 const DetailsContainer = styled.div`
-  background-color: green;
+  margin: 0 auto;
   padding: 10px;
+
+  @media (min-width: 768px) {
+    max-width: 700px;
+  }
 `;
 
 const Location = styled.h1`
-  font-size: 24pt;
+  font-size: 20pt;
   font-weight: 700;
-  text-transform: uppercase;
 `;
 
-const ForecastDetails = ({weatherData: {city, list}, setUnits}) => {
+const ForecastDaysContainer = styled.div`
+  display: flex;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  width: calc(100vw - 20px);
+  
+  @media (min-width: 768px) {
+    overflow: hidden;
+    margin-right: 0;
+    width: 100%;
+    justify-content: space-between;
+  }
+`;
 
-  const [selectedDate, setSelectedDate] = useState(false);
+const ForecastDetails = ({weatherData: {city, list}, units, setUnits}) => {
+
   const weatherByDate = groupWeatherDataByDate(list);
+  const uniqueWeatherDates = Object.keys(weatherByDate);
+  const [selectedDate, setSelectedDate] = useState(0);
+  const selectedDateForecasts = weatherByDate[uniqueWeatherDates[selectedDate]];
 
-  console.log('Weather By Date is', weatherByDate, Object.keys(weatherByDate));
+  return (
+    <DetailsContainer>
+      <Location>{city.name}, {city.country}</Location>
+      
+      <ForecastDaysContainer>
+        {uniqueWeatherDates.length > 0 && uniqueWeatherDates.map((dateKey, ix) => {
+          return <ForecastPreviewCard
+            key={`${dateKey}-${ix}`}
+            weatherData={weatherByDate[dateKey]}
+            isSelected={selectedDate === ix}
+            onPress={() => setSelectedDate(ix)}
+            isLastCard={ix === uniqueWeatherDates.length - 1}
+          />;
+        })}
+      </ForecastDaysContainer>
 
-  return <DetailsContainer>
-    <Location>{city.name}, {city.country}</Location>
-    
-    {Object.keys(weatherByDate).length > 0 && Object.keys(weatherByDate).forEach((dateKey, ix) => {
-      return <ForecastPreviewCard
-        key={`${dateKey}-${ix}`}
-        isSelected={selectedDate === dateKey}
-        onPress={() => setSelectedDate(ix)}
-        onUnitChange={setUnits}
-      />;
-    })}
+      <ForecastHero units={units} setUnits={setUnits} weatherData={selectedDateForecasts[0]} />   
 
-    <ForecastHero />
-    
-    {selectedDate && weatherByDate[selectedDate].forEach((weatherData, ix) => {
-      return <HourlyForecastRow key={`${weatherData.dt}-${ix}`} weatherData={weatherData} />
-    })}
-  </DetailsContainer>;
+      {selectedDateForecasts.map((weatherData, ix) => {
+        return <HourlyForecastRow
+          key={`${weatherData.dt}-${ix}`}
+          weatherData={weatherData}
+        />})
+      }
+    </DetailsContainer>
+  );
 };
 
 export default ForecastDetails;

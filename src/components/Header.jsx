@@ -7,7 +7,7 @@ const HeaderContainer = styled.div`
   background-color: #fff;
   display: flex;
   justify-content: center;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.03);
 `;
 
 const HeaderLayout = styled.div`
@@ -50,9 +50,42 @@ const Title = styled.h1`
 
 const Subtitle = styled.h5`
   margin: 0;
+  color: orange;
 `;
 
-const Header = ({location, setLocation}) => {
+const TemperatureSwitch = styled.div`
+  display: flex;
+  position: absolute;
+  top: 20px;
+  right: 15px;
+
+  @media (min-width: 768px) {
+    position: inherit;
+    height: 36px;
+    margin-left: 25px;
+  }
+`;
+
+const UnitButton = styled.button`
+  background: ${({active}) => active ? '#050044' : '#FAFAFA'};
+  color: ${({active}) => active ? 'white' : 'inherit'};
+  border: none;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, .2);
+  padding: 8px 14px;
+  font-size: 10pt;
+`;
+
+const CelsiusButton = styled(UnitButton)`
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+`;
+  
+const FahrenheitButton = styled(UnitButton)`
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+`;
+
+const Header = ({location, setLocation, units, setUnits}) => {
   return <HeaderContainer>
     <HeaderLayout>
       <Branding>
@@ -60,6 +93,10 @@ const Header = ({location, setLocation}) => {
         <Subtitle>Find Your Forecast</Subtitle>
       </Branding>
       <SearchBar defaultLocation={location} onLocationChange={setLocation} />
+      <TemperatureSwitch>
+        <CelsiusButton active={units === 'metric'} onClick={() => setUnits('metric')}>&deg;C</CelsiusButton>
+        <FahrenheitButton active={units === 'imperial'} onClick={() => setUnits('imperial')}>&deg;F</FahrenheitButton>
+      </TemperatureSwitch>
     </HeaderLayout>
   </HeaderContainer>
 };

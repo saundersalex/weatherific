@@ -27,7 +27,7 @@ const Weatherific = () => {
   const params = new URLSearchParams(window.location.search);
   const locationFromURL = params.get('location');
 
-  const [location, setLocation] = useState(locationFromURL || '');
+  const [location, setLocation] = useState(locationFromURL || 'Kelowna');
   const [debouncedLocation] = useDebounce(location, 1000);
   
   const [loading, setLoading] = useState(true);
@@ -37,8 +37,6 @@ const Weatherific = () => {
 
   // Effect to load data from OWM API when location or units change.
   useEffect(() => {
-    console.log('Fetch data');
-
     const fetchWeatherForecast = async () => {
       setLoading(true);
       setError(false);
@@ -65,7 +63,7 @@ const Weatherific = () => {
 
   return (
     <WeatherificContainer>
-      <Header location={location} setLocation={setLocation} />
+      <Header location={location} setLocation={setLocation} units={units} setUnits={setUnits} />
       {loading && (
         <LoadingContainer>
           <LoadingIndicator size={44} />
@@ -75,7 +73,7 @@ const Weatherific = () => {
         <span>Error!</span>
       )}
       {debouncedLocation.length < 3 && <GetStarted />}
-      {!loading && !error && weatherData && <ForecastDetails weatherData={weatherData} setUnits={setUnits} />}
+      {!loading && !error && weatherData && <ForecastDetails weatherData={weatherData} units={units} setUnits={setUnits} />}
       
       <pre>{JSON.stringify({ location, debouncedLocation, loading, error, units, weatherData }, ' ', 4)}</pre>
     </WeatherificContainer>
