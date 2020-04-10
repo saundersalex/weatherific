@@ -10,6 +10,15 @@ const Container = styled.div`
   }
 `;
 
+const CityLink = styled.a`
+  color: #FD2B2B;
+  font-weight: bold;
+
+  :hover {
+    opacity: .75;
+  }
+`;
+
 const GetStarted = () => {
   return (
     <Container>
@@ -20,6 +29,14 @@ const GetStarted = () => {
       <p>
         <strong>Weatherific</strong> helps you find weather forecasts quickly for any city in the world. Get started by searching for your next travel destination or home town!
       </p>
+
+      <h2>Featured Cities</h2>
+      <p>Why not take a peek at some of our favorite cities?</p>
+      <ul>
+        <li><CityLink href="?location=Vancouver">Vancouver</CityLink></li>
+        <li><CityLink href="?location=Kelowna">Kelowna</CityLink></li>
+        <li><CityLink href="?location=Toronto">Toronto</CityLink></li>
+      </ul>
     </Container>
   );
 };
